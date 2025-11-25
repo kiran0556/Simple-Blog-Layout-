@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevSphere Blog | Task 8</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap 5 CSS CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-soft: #dbeafe;
+      --dark: #0f172a;
+      --muted: #6b7280;
+      --bg-soft: #f3f4f6;
+      --card-radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #eff6ff, #f9fafb 50%);
+      color: #111827;
+    }
+
+    /* Navbar */
+    .navbar {
+      backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.9) !important;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .nav-link {
+      font-weight: 400;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 2.5rem;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background-color: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .hero-title {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .hero-subtitle {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+    .hero-meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* Cards */
+    .blog-card {
+      border: none;
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      background-color: #ffffff;
+      transition: transform 0.18s ease, box-shadow 0.18s ease,
+        border-color 0.18s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+    .blog-card-img {
+      height: 190px;
+      object-fit: cover;
+    }
+    .blog-card .card-body {
+      padding: 1.1rem 1.15rem 0.9rem;
+    }
+    .blog-card .badge {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+    }
+    .blog-card-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+    .blog-card-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .blog-card .card-footer {
+      background-color: transparent;
+      border-top: none;
+      padding: 0.75rem 1.15rem 1.05rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .btn-soft-primary {
+      background-color: var(--primary-soft);
+      color: var(--primary);
+      border-radius: 999px;
+      border: none;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.9rem;
+      font-weight: 500;
+    }
+    .btn-soft-primary:hover {
+      background-color: #bfdbfe;
+      color: #1d4ed8;
+    }
+
+    /* Sidebar */
+    .sidebar-card {
+      border-radius: 16px;
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+    }
+    .sidebar-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+    .sidebar-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .tag-badge {
+      font-size: 0.75rem;
+      background-color: #eef2ff;
+      color: #4f46e5;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      display: inline-flex;
+      margin: 0.15rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: #e5e7eb;
+    }
+    .footer-link {
+      text-decoration: none;
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+    .footer-link:hover {
+      color: #e5e7eb;
+    }
+    .footer-icon {
+      font-size: 1.15rem;
+      text-decoration: none;
+      color: #9ca3af;
+    }
+    .footer-icon:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 3.2rem;
+      }
+      .hero-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">DevSphere Blog</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Resources</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <a class="btn btn-sm btn-outline-light px-3 rounded-pill" href="#">
+              Subscribe
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page spacer for fixed navbar -->
+  <div style="height: 72px;"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-8">
+          <div class="hero-badge mb-3">
+            <span>✨ New</span>
+            <span>Weekly articles on Web & Dev Career</span>
+          </div>
+          <h1 class="hero-title display-6 mb-3">
+            Learn modern web development with short, practical articles.
+          </h1>
+          <p class="hero-subtitle mb-3">
+            A clean, responsive blog layout built using Bootstrap 5 — perfect for
+            showcasing your learning journey, projects, and tutorials.
+          </p>
+          <div class="hero-meta d-flex flex-wrap align-items-center gap-3">
+            <span>📅 Updated: Nov 25, 2025</span>
+            <span>•</span>
+            <span>☕ Ideal for students & beginners</span>
+          </div>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <div class="d-inline-flex flex-column align-items-start align-items-lg-end gap-2">
+            <span class="hero-meta">Today’s highlight</span>
+            <button class="btn btn-primary rounded-pill px-4 py-2">
+              Read: “Bootstrap 5 for Beginners”
+            </button>
+            <span class="hero-meta">No ads. Just code & concepts.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container pb-5">
+    <div class="row g-4">
+      <!-- Blog List -->
+      <div class="col-lg-8">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+
+          <!-- Card 1 -->
+          <div class="col">
+            <article class="card blog-card h-100 shadow-sm">
+              <img
+                src="https://picsum.photos/seed/post1/800/600"
+                class="card-img-top blog-card-img"
+                alt="HTML & CSS"
+              />
+              <div class="card-body">
+                <span class="badge bg-light text-dark mb-2">HTML & CSS</span>
+                <h2 class="blog-card-title mb-1">
+                  Getting Started with HTML & CSS
+                </h2>
+                <p class="blog-card-text mb-3">
+                  Understand how structure and styling work together to create beautiful, accessible web pages.
+                </p>
+                <button class="btn-soft-primary">
+                  Read More →
+                </button>
+              </div>
+              <div class="card-footer d-flex justify-content-between align-items-center">
+                <span>Nov 20, 2025</span>
+                <span>5 min read · Beginner</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col">
+            <article class="card blog-card h-100 shadow-sm">
+              <img
+                src="https://picsum.photos/seed/post2/800/600"
+                class="card-img-top blog-card-img"
+                alt="Bootstrap 5"
+              />
+              <div class="card-body">
+                <span class="badge bg-primary-subtle text-primary mb-2">Bootstrap</span>
+                <h2 class="blog-card-title mb-1">
+                  Bootstrap 5 for Beginners
+                </h2>
+                <p class="blog-card-text mb-3">
+                  Learn how to use the grid system, components, and utilities to build responsive layouts faster.
+                </p>
+                <button class="btn-soft-primary">
+                  Read More →
+                </button>
+              </div>
+              <div class="card-footer d-flex justify-content-between align-items-center">
+                <span>Nov 21, 2025</span>
+                <span>7 min read · Beginner</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col">
+            <article class="card blog-card h-100 shadow-sm">
+              <img
+                src="https://picsum.photos/seed/post3/800/600"
+                class="card-img-top blog-card-img"
+                alt="JavaScript"
+              />
+              <div class="card-body">
+                <span class="badge bg-warning-subtle text-warning mb-2">
+                  JavaScript
+                </span>
+                <h2 class="blog-card-title mb-1">
+                  JavaScript Basics Explained
+                </h2>
+                <p class="blog-card-text mb-3">
+                  Variables, functions, events, and DOM — everything you need to start writing interactive features.
+                </p>
+                <button class="btn-soft-primary">
+                  Read More →
+                </button>
+              </div>
+              <div class="card-footer d-flex justify-content-between align-items-center">
+                <span>Nov 22, 2025</span>
+                <span>6 min read · Beginner</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col">
+            <article class="card blog-card h-100 shadow-sm">
+              <img
+                src="https://picsum.photos/seed/post4/800/600"
+                class="card-img-top blog-card-img"
+                alt="Responsive Design"
+              />
+              <div class="card-body">
+                <span class="badge bg-info-subtle text-info mb-2">
+                  Responsive Design
+                </span>
+                <h2 class="blog-card-title mb-1">
+                  Practical Responsive Design Tips
+                </h2>
+                <p class="blog-card-text mb-3">
+                  Use breakpoints, flexbox, and the Bootstrap grid to make your UI look great on any device.
+                </p>
+                <button class="btn-soft-primary">
+                  Read More →
+                </button>
+              </div>
+              <div class="card-footer d-flex justify-content-between align-items-center">
+                <span>Nov 23, 2025</span>
+                <span>4 min read · Intermediate</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="col">
+            <article class="card blog-card h-100 shadow-sm">
+              <img
+                src="https://picsum.photos/seed/post5/800/600"
+                class="card-img-top blog-card-img"
+                alt="REST APIs"
+              />
+              <div class="card-body">
+                <span class="badge bg-success-subtle text-success mb-2">
+                  Backend
+                </span>
+                <h2 class="blog-card-title mb-1">
+                  Intro to REST APIs for Frontend Devs
+                </h2>
+                <p class="blog-card-text mb-3">
+                  Learn how HTTP methods, endpoints, and JSON responses power modern web applications.
+                </p>
+                <button class="btn-soft-primary">
+                  Read More →
+                </button>
+              </div>
+              <div class="card-footer d-flex justify-content-between align-items-center">
+                <span>Nov 24, 2025</span>
+                <span>8 min read · Intermediate</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="col">
+            <article class="card blog-card h-100 shadow-sm">
+              <img
+                src="https://picsum.photos/seed/post6/800/600"
+                class="card-img-top blog-card-img"
+                alt="Git & GitHub"
+              />
+              <div class="card-body">
+                <span class="badge bg-danger-subtle text-danger mb-2">
+                  Tools
+                </span>
+                <h2 class="blog-card-title mb-1">
+                  Git & GitHub for Students
+                </h2>
+                <p class="blog-card-text mb-3">
+                  Learn the basic commands to track changes, collaborate, and host your projects online for free.
+                </p>
+                <button class="btn-soft-primary">
+                  Read More →
+                </button>
+              </div>
+              <div class="card-footer d-flex justify-content-between align-items-center">
+                <span>Nov 25, 2025</span>
+                <span>9 min read · Beginner</span>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="col-lg-4">
+        <!-- About -->
+        <section class="sidebar-card p-3 p-md-4 mb-4">
+          <h3 class="sidebar-title mb-2">About this blog</h3>
+          <p class="sidebar-text mb-3">
+            DevSphere Blog is a learning journal for students and early-career
+            developers. Short tutorials, project ideas, and practical tips to
+            help you build real-world skills.
+          </p>
+          <button class="btn btn-outline-primary btn-sm rounded-pill px-3">
+            Start reading →
+          </button>
+        </section>
+
+        <!-- Popular Topics -->
+        <section class="sidebar-card p-3 p-md-4 mb-4">
+          <h3 class="sidebar-title mb-3">Popular topics</h3>
+          <div>
+            <span class="tag-badge">HTML & Semantics</span>
+            <span class="tag-badge">CSS Flexbox</span>
+            <span class="tag-badge">Bootstrap 5</span>
+            <span class="tag-badge">JavaScript Basics</span>
+            <span class="tag-badge">REST APIs</span>
+            <span class="tag-badge">Git & GitHub</span>
+          </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="sidebar-card p-3 p-md-4">
+          <h3 class="sidebar-title mb-2">Stay updated</h3>
+          <p class="sidebar-text mb-3">
+            Get a short email once a week with new articles and project ideas.
+          </p>
+          <form class="d-flex flex-column gap-2">
+            <input
+              type="email"
+              class="form-control form-control-sm"
+              placeholder="Your email address"
+            />
+            <button
+              type="button"
+              class="btn btn-primary btn-sm rounded-pill px-3"
+            >
+              Join newsletter
+            </button>
+          </form>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 mt-auto">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div>
+        <span class="me-2">&copy; 2025 DevSphere Blog.</span>
+        <a href="#" class="footer-link me-2">Privacy</a>
+        <a href="#" class="footer-link me-2">Terms</a>
+        <a href="#" class="footer-link">Contact</a>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <a href="#" class="footer-icon" aria-label="GitHub">🐱‍💻</a>
+        <a href="#" class="footer-icon" aria-label="LinkedIn">💼</a>
+        <a href="#" class="footer-icon" aria-label="Twitter / X">🐦</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+  </script>
+</body>
+</html>
